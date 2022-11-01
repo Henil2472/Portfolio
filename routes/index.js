@@ -1,29 +1,24 @@
 var express = require('express');
+const app = require('../app');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
 
-router.get('/Projects', function(req, res, next) {
-  res.render('projects', { title: 'Express' });
-});
+const indexcontroller = require('../controllers/index')
 
 
 
-router.get('/Services', function(req, res, next) {
-  res.render('services', { title: 'Express' });
-});
+router.get('/' , indexcontroller.Home);
+router.get('/About' , indexcontroller.About);
+router.get('/Contact' , indexcontroller.Contact);
+router.get('/Services' , indexcontroller.Services);
+router.get('/projects' , indexcontroller.Projects);
+router.get('/login' , indexcontroller.login_get);
+router.post('/login', indexcontroller.processLoginPage);
+router.get('/register' , indexcontroller.displayRegisterPage);
+router.post('/register', indexcontroller.processRegisterPage);
 
 
-router.get('/About', function(req, res, next) {
-  res.render('about', { title: 'Express' });
-});
-
-router.get('/Contact', function(req, res, next) {
-  res.render('contact');
-});
-
+/* GET to perform UserLogout */
+router.get("/logout", indexcontroller.performLogout);
 
 module.exports = router;
